@@ -28,9 +28,17 @@ contour_data <- do.call(rbind, contour_list)
 
 # Plot the data using ggplot
 ggplot(data = d, aes(x, y))  + geom_point()+
-  geom_path(aes(x, y, group = as.factor(level), col = as.factor(level)), data = contour_data) +
+  geom_path(aes(x, y, group = as.factor(level), col = as.factor(level.1)), data = contour_data) +
   theme_bw() +
   scale_color_discrete(name = "Contour Level", breaks = cont_levels)
+
+#colored plot
+ggplot(d, aes(gpa,study_hours))+
+  stat_density_2d(aes(fill=..level..), geom="polygon",color="white")+
+  scale_fill_gradient(low="lightblue", high="darkblue")+
+  geom_point(alpha=0.5, size=2)+
+  theme_minimal()
+
 
 
 
